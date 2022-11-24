@@ -180,6 +180,7 @@ extension ViewController: UISearchBarDelegate {
         productRequest.page = 1
         productRequest.query = query
         fetchProducts(productRequest: productRequest)
+        searchController.isActive = false
     }
     
 }
