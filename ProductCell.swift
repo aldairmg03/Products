@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProductCell: UITableViewCell, ReusableView {
 
@@ -23,7 +24,7 @@ class ProductCell: UITableViewCell, ReusableView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
         label.textColor = .black
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
     }()
 
@@ -31,7 +32,7 @@ class ProductCell: UITableViewCell, ReusableView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
     
@@ -39,7 +40,6 @@ class ProductCell: UITableViewCell, ReusableView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        //stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -73,8 +73,10 @@ private extension ProductCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8)
+            thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            thumbnailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8),
+            thumbnailImageView.heightAnchor.constraint(equalToConstant: 100),
+            thumbnailImageView.widthAnchor.constraint(equalToConstant: contentView.frame.width / 3)
         ])
         
         NSLayoutConstraint.activate([
@@ -93,6 +95,7 @@ extension ProductCell {
     func configure(item: Items) {
         titleLabel.text = item.name
         priceLabel.text = "$\(item.price)"
+        thumbnailImageView.sd_setImage(with: URL(string: item.image), completed: nil)
     }
     
 }
