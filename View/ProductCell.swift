@@ -93,9 +93,9 @@ private extension ProductCell {
 extension ProductCell {
     
     func configure(item: Items) {
-        titleLabel.text = item.name
-        priceLabel.text = "$\(item.price)"
-        thumbnailImageView.sd_setImage(with: URL(string: item.image), completed: nil)
+        titleLabel.text = item.name ?? ""
+        priceLabel.text = "$\(item.price ?? 0)"
+        thumbnailImageView.sd_setImage(with: URL(string: item.image ?? ""), completed: nil)
     }
     
 }

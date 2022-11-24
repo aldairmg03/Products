@@ -36,7 +36,7 @@ struct ItemStacks: Decodable {
 }
 
 struct Items: Decodable {
-    var name: String
-    var price: Int
-    var image: String
+    var name: String?
+    var price: Int?
+    var image: String?
 }
